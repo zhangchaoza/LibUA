@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft Corporation.  All rights reserved.
+﻿// Copyright (c) Microsoft Corporation.  All rights reserved.
 
 using System;
 using System.Diagnostics;
@@ -260,7 +260,7 @@ namespace LibUA.Security.Cryptography
         public override int TagSize
         {
             get { return m_authenticatedSymmetricAlgorithm.TagSize; }
-            set { m_authenticatedSymmetricAlgorithm.TagSize = value;  }
+            set { m_authenticatedSymmetricAlgorithm.TagSize = value; }
         }
 
         public override IAuthenticatedCryptoTransform CreateAuthenticatedEncryptor()

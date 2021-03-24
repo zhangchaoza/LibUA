@@ -2,9 +2,9 @@
 
 using System;
 using System.Diagnostics.CodeAnalysis;
-using LibUA.Security.Cryptography.Xml;
-using System.Xml;
 using System.Security.Cryptography.Xml;
+using System.Xml;
+using LibUA.Security.Cryptography.Xml;
 
 namespace LibUA.Security.Cryptography.Xml
 {
@@ -41,7 +41,7 @@ namespace LibUA.Security.Cryptography.Xml
                 //  1. Import the decrypted data into an XmlNode
                 //  2. Get that node into the target document
                 //  3. Replace the root element with the decrypted node
-                
+
                 XmlDocument importDocument = new XmlDocument();
                 importDocument.LoadXml(encryptedXml.Encoding.GetString(decryptedData));
 

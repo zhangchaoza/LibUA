@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft Corporation.  All rights reserved.
+﻿// Copyright (c) Microsoft Corporation.  All rights reserved.
 
 using System;
 using System.Diagnostics;
@@ -46,7 +46,7 @@ namespace LibUA.Security.Cryptography
             m_algorithm = BCryptNative.OpenAlgorithm(algorithm.Algorithm,
                                                      algorithmProvider.Provider,
                                                      BCryptNative.AlgorithmProviderOptions.HmacAlgorithm);
-            
+
             // Resetting the key will call Initialize for us, and get us setup with a hash handle,
             // so we don't need to create the hash handle ourselves
             Key = key;

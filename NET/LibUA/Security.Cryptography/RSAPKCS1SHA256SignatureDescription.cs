@@ -85,7 +85,7 @@ namespace LibUA.Security.Cryptography
         {
             KeyAlgorithm = typeof(RSACryptoServiceProvider).FullName;
             DigestAlgorithm = typeof(SHA256Managed).FullName;   // Note - SHA256CryptoServiceProvider is not registered with CryptoConfig
-            FormatterAlgorithm = typeof (RSAPKCS1SignatureFormatter).FullName;
+            FormatterAlgorithm = typeof(RSAPKCS1SignatureFormatter).FullName;
             DeformatterAlgorithm = typeof(RSAPKCS1SignatureDeformatter).FullName;
         }
 

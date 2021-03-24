@@ -25,7 +25,7 @@ namespace LibUA.Security.Cryptography.X509Certificates
     public enum AlternateNameType
     {
         None = 0,
-        
+
         /// <summary>
         ///     Alternate name that isn't one of the standard alternate name types.  This corresponds to the
         ///     CERT_ALT_NAME_OTHER_NAME type.
@@ -87,12 +87,12 @@ namespace LibUA.Security.Cryptography.X509Certificates
         /// <summary>
         ///     Do not set any flags when creating the certificate
         /// </summary>
-        None                    = 0x00000000,
+        None = 0x00000000,
 
         /// <summary>
         ///     Create an unsigned certificate.  This maps to the CERT_CREATE_SELFSIGN_NO_SIGN flag.
         /// </summary>
-        DoNotSignCertificate    = 0x00000001,
+        DoNotSignCertificate = 0x00000001,
 
         /// <summary>
         ///     By default, certificates will reference their private keys by setting the
@@ -171,8 +171,8 @@ namespace LibUA.Security.Cryptography.X509Certificates
         /// </summary>
         internal enum AcquireCertificateKeyOptions
         {
-            None                        = 0x00000000,
-            AcquireOnlyNCryptKeys       = 0x00040000,   // CRYPT_ACQUIRE_ONLY_NCRYPT_KEY_FLAG
+            None = 0x00000000,
+            AcquireOnlyNCryptKeys = 0x00040000,   // CRYPT_ACQUIRE_ONLY_NCRYPT_KEY_FLAG
         }
 
         /// <summary>
@@ -181,8 +181,8 @@ namespace LibUA.Security.Cryptography.X509Certificates
         [Flags]
         internal enum CertificateEncodingType
         {
-            X509AsnEncoding         = 0x00000001,       // X509_ASN_ENCODING
-            Pkcs7AsnEncoding        = 0x00010000,       // PKCS7_ASN_ENCODING
+            X509AsnEncoding = 0x00000001,       // X509_ASN_ENCODING
+            Pkcs7AsnEncoding = 0x00010000,       // PKCS7_ASN_ENCODING
         }
 
         /// <summary>
@@ -190,8 +190,8 @@ namespace LibUA.Security.Cryptography.X509Certificates
         /// </summary>
         internal enum CertificateProperty
         {
-            KeyProviderInfo                     = 2,    // CERT_KEY_PROV_INFO_PROP_ID 
-            KeyContext                          = 5,    // CERT_KEY_CONTEXT_PROP_ID
+            KeyProviderInfo = 2,    // CERT_KEY_PROV_INFO_PROP_ID 
+            KeyContext = 5,    // CERT_KEY_CONTEXT_PROP_ID
         }
 
         /// <summary>
@@ -200,8 +200,8 @@ namespace LibUA.Security.Cryptography.X509Certificates
         [Flags]
         internal enum CertificatePropertySetFlags
         {
-            None                                = 0x00000000,
-            NoCryptRelease                      = 0x00000001,   // CERT_STORE_NO_CRYPT_RELEASE_FLAG
+            None = 0x00000000,
+            NoCryptRelease = 0x00000001,   // CERT_STORE_NO_CRYPT_RELEASE_FLAG
         }
 
         /// <summary>
@@ -209,9 +209,9 @@ namespace LibUA.Security.Cryptography.X509Certificates
         /// </summary>
         internal enum CertificateVersion
         {
-            Version1                            = 0,    // CERT_V1
-            Version2                            = 1,    // CERT_V2
-            Version3                            = 2,    // CERT_V3
+            Version1 = 0,    // CERT_V1
+            Version2 = 1,    // CERT_V2
+            Version3 = 2,    // CERT_V3
         }
 
         /// <summary>
@@ -220,10 +220,10 @@ namespace LibUA.Security.Cryptography.X509Certificates
         [Flags]
         internal enum DecodeObjectFlags
         {
-            None                    = 0x00000000,
-            NoCopy                  = 0x00000001,       // CRYPT_DECODE_NOCOPY_FLAG
-            ShareOidStrings         = 0x00000004,       // CRYPT_DECODE_SHARE_OID_STRING_FLAG
-            AllocateMemory          = 0x00008000,       // CRYPT_DECODE_ALLOC_FLAG
+            None = 0x00000000,
+            NoCopy = 0x00000001,       // CRYPT_DECODE_NOCOPY_FLAG
+            ShareOidStrings = 0x00000004,       // CRYPT_DECODE_SHARE_OID_STRING_FLAG
+            AllocateMemory = 0x00008000,       // CRYPT_DECODE_ALLOC_FLAG
         }
 
         /// <summary>
@@ -231,8 +231,8 @@ namespace LibUA.Security.Cryptography.X509Certificates
         /// </summary>
         internal enum ErrorCode
         {
-            Success                 = 0x00000000,       // ERROR_SUCCESS
-            MoreData                = 0x000000ea,       // ERROR_MORE_DATA
+            Success = 0x00000000,       // ERROR_SUCCESS
+            MoreData = 0x000000ea,       // ERROR_MORE_DATA
         }
 
         /// <summary>
@@ -240,7 +240,7 @@ namespace LibUA.Security.Cryptography.X509Certificates
         /// </summary>
         internal enum KeySpec
         {
-            NCryptKey               = unchecked((int)0xffffffff)    // CERT_NCRYPT_KEY_SPEC
+            NCryptKey = unchecked((int)0xffffffff)    // CERT_NCRYPT_KEY_SPEC
         }
 
         //
@@ -652,7 +652,7 @@ namespace LibUA.Security.Cryptography.X509Certificates
 
                     bool attachedProperty = false;
                     int setContextError = 0;
-                        
+
                     // Run in a CER to ensure accurate tracking of the transfer of handle ownership
                     RuntimeHelpers.PrepareConstrainedRegions();
                     try { }

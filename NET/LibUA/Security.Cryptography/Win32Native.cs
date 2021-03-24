@@ -23,10 +23,10 @@ namespace LibUA.Security.Cryptography
         [Flags]
         internal enum FormatMessageFlags
         {
-            None                = 0x00000000,
-            AllocateBuffer      = 0x00000100,           // FORMAT_MESSAGE_ALLOCATE_BUFFER
-            FromModule          = 0x00000800,           // FORMAT_MESSAGE_FROM_HMODULE
-            FromSystem          = 0x00001000,           // FORMAT_MESSAGE_FROM_SYSTEM
+            None = 0x00000000,
+            AllocateBuffer = 0x00000100,           // FORMAT_MESSAGE_ALLOCATE_BUFFER
+            FromModule = 0x00000800,           // FORMAT_MESSAGE_FROM_HMODULE
+            FromSystem = 0x00001000,           // FORMAT_MESSAGE_FROM_SYSTEM
         }
 
         //

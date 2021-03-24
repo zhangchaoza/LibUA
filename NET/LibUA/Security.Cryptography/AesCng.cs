@@ -62,7 +62,7 @@ namespace LibUA.Security.Cryptography
                                                                 algorithmProvider,
                                                                 LegalBlockSizesValue,
                                                                 LegalKeySizesValue);
-            
+
             // Propigate the default properties from the Aes class to the implementation algorithm.
             m_symmetricAlgorithm.BlockSize = BlockSizeValue;
             m_symmetricAlgorithm.KeySize = KeySizeValue;

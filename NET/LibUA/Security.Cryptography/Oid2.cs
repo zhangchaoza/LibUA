@@ -32,7 +32,7 @@ namespace LibUA.Security.Cryptography
 
         // Algorithm identifiers for both CAPI and CNG for CRYPT_*_ALG_OID_GROUP_ID OIDs
         private int? m_algorithmId;
-        private CngAlgorithm m_cngAlgorithm;    
+        private CngAlgorithm m_cngAlgorithm;
         private CngAlgorithm m_cngExtraAlgorithm;
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace LibUA.Security.Cryptography
         ///     if <paramref name="oid" /> or <paramref name="friendlyName"/> are null
         /// </exception>
         public Oid2(string oid, string friendlyName, OidGroup group)
-            : this (oid, friendlyName, group, null, null)
+            : this(oid, friendlyName, group, null, null)
         {
             return;
         }

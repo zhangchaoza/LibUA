@@ -3,9 +3,9 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Security;
-using System.Security.Permissions;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
+using System.Security.Permissions;
 using LibUA.Security.Cryptography.X509Certificates;
 using Microsoft.Win32.SafeHandles;
 
@@ -47,7 +47,7 @@ namespace LibUA.Security.Cryptography.X509Certificates
             {
                 return null;
             }
-            
+
             using (SafeCertContextHandle certContext = certificate.GetCertificateContext())
             using (SafeNCryptKeyHandle privateKeyHandle = X509Native.AcquireCngPrivateKey(certContext))
             {

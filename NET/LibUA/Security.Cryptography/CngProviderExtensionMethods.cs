@@ -5,8 +5,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Security;
-using System.Security.Permissions;
 using System.Security.Cryptography;
+using System.Security.Permissions;
 using Microsoft.Win32.SafeHandles;
 
 namespace LibUA.Security.Cryptography
@@ -114,7 +114,7 @@ namespace LibUA.Security.Cryptography
         /// <param name="operations">operations that the returned algorithms should support</param>
         [SecurityCritical]
         [SecuritySafeCritical]
-        [SuppressMessage("Microsoft.Security", "CA2122:DoNotIndirectlyExposeMethodsWithLinkDemands", Justification = "Safe exposure of OpenProvider")] 
+        [SuppressMessage("Microsoft.Security", "CA2122:DoNotIndirectlyExposeMethodsWithLinkDemands", Justification = "Safe exposure of OpenProvider")]
         public static IEnumerable<CngAlgorithm> GetSupportedAlgorithms(this CngProvider provider,
                                                                        NCryptAlgorithmOperations operations)
         {

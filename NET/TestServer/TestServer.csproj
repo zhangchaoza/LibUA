@@ -45,9 +45,6 @@
     <Compile Include="Program.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\LibUA\LibUA.csproj">
       <Project>{a02727b5-ba44-4b42-a75f-b35e295dbaf0}</Project>
       <Name>LibUA</Name>

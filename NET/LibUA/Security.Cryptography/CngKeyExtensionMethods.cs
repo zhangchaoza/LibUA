@@ -7,8 +7,8 @@ using System.Security;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Security.Permissions;
-using Microsoft.Win32.SafeHandles;
 using LibUA.Security.Cryptography.X509Certificates;
+using Microsoft.Win32.SafeHandles;
 
 namespace LibUA.Security.Cryptography
 {
@@ -85,7 +85,7 @@ namespace LibUA.Security.Cryptography
         [SuppressMessage("Microsoft.Security", "CA2122:DoNotIndirectlyExposeMethodsWithLinkDemands", Justification = "Safe use of LinkDemand protected methods")]
         [SuppressMessage("Microsoft.Reliability", "CA2001:AvoidCallingProblematicMethods", MessageId = "System.Runtime.InteropServices.SafeHandle.DangerousGetHandle", Justification = "Used in a CER block with AddRef and Release")]
         public static X509Certificate2 CreateSelfSignedCertificate(this CngKey key,
-																   X509Certificates.X509CertificateCreationParameters creationParameters)
+                                                                   X509Certificates.X509CertificateCreationParameters creationParameters)
         {
             if (creationParameters == null)
                 throw new ArgumentNullException("creationParameters");

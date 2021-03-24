@@ -80,8 +80,8 @@ namespace LibUA.Security.Cryptography
         [Flags]
         internal enum AlgorithmProviderOptions
         {
-            None                = 0x00000000,
-            HmacAlgorithm       = 0x00000008,                           // BCRYPT_ALG_HANDLE_HMAC_FLAG
+            None = 0x00000000,
+            HmacAlgorithm = 0x00000008,                           // BCRYPT_ALG_HANDLE_HMAC_FLAG
         }
 
         /// <summary>
@@ -90,9 +90,9 @@ namespace LibUA.Security.Cryptography
         [Flags]
         internal enum AuthenticatedCipherModeInfoFlags
         {
-            None                = 0x00000000,
-            ChainCalls          = 0x00000001,                           // BCRYPT_AUTH_MODE_CHAIN_CALLS_FLAG
-            InProgress          = 0x00000002,                           // BCRYPT_AUTH_MODE_IN_PROGRESS_FLAG
+            None = 0x00000000,
+            ChainCalls = 0x00000001,                           // BCRYPT_AUTH_MODE_CHAIN_CALLS_FLAG
+            InProgress = 0x00000002,                           // BCRYPT_AUTH_MODE_IN_PROGRESS_FLAG
         }
 
         /// <summary>
@@ -288,7 +288,7 @@ namespace LibUA.Security.Cryptography
                                                               [Out] out SafeBCryptHashHandle hHash,
                                                               IntPtr pbHashObject,              // byte *
                                                               int cbHashObject,
-                                                              [In, MarshalAs(UnmanagedType.LPArray)]byte[] pbSecret,
+                                                              [In, MarshalAs(UnmanagedType.LPArray)] byte[] pbSecret,
                                                               int cbSecret,
                                                               int dwFlags);
 
@@ -388,7 +388,7 @@ namespace LibUA.Security.Cryptography
                                                              [In, MarshalAs(UnmanagedType.LPArray)] byte[] pbInput,
                                                              int cbInput,
                                                              int dwFlags);
-                                                 
+
             [DllImport("bcrypt.dll")]
             internal static extern ErrorCode BCryptOpenAlgorithmProvider([Out] out SafeBCryptAlgorithmHandle phAlgorithm,
                                                                          [MarshalAs(UnmanagedType.LPWStr)] string pszAlgId,
@@ -436,7 +436,7 @@ namespace LibUA.Security.Cryptography
                                                                    [Out, MarshalAs(UnmanagedType.LPArray)] byte[] pbDerivedKey,
                                                                    int cbDerivedKey,
                                                                    int dwFlags);
- 
+
         }
 
         /// <summary>
@@ -597,7 +597,7 @@ namespace LibUA.Security.Cryptography
             {
                 unsafe
                 {
-                    fixed (byte *pPropertyBytes = rawProperty)
+                    fixed (byte* pPropertyBytes = rawProperty)
                     {
                         return Marshal.PtrToStringUni(new IntPtr(pPropertyBytes));
                     }
@@ -773,7 +773,7 @@ namespace LibUA.Security.Cryptography
                 // we need to free it now otherwise it will leak.
                 if (keyDataBuffer != IntPtr.Zero)
                 {
-                    if (keyHandle == null ||keyHandle.DataBuffer == IntPtr.Zero)
+                    if (keyHandle == null || keyHandle.DataBuffer == IntPtr.Zero)
                     {
                         Marshal.FreeCoTaskMem(keyDataBuffer);
                     }
@@ -1112,7 +1112,7 @@ namespace LibUA.Security.Cryptography
 
             // Create a "key" object from the password
             SafeBCryptAlgorithmHandle hPbkdf2 = OpenAlgorithm(AlgorithmName.Pbkdf2, null);
-            
+
             SafeBCryptKeyHandle hKey = new SafeBCryptKeyHandle();
             ErrorCode error = UnsafeNativeMethods.BCryptGenerateSymmetricKey(hPbkdf2, out hKey, null, 0, password, password.Length, 0);
             if (error != ErrorCode.Success)
@@ -1123,18 +1123,18 @@ namespace LibUA.Security.Cryptography
 
             // Prepare the param buffer
             BCryptBuffer[] buffer = new BCryptBuffer[3];
-            buffer[0].BufferType = (int) ParameterTypes.KdfHashAlgorithm;
-            buffer[0].cbBuffer = hashName.Length*2;                 // *2 since a WCHAR is 2-bytes
+            buffer[0].BufferType = (int)ParameterTypes.KdfHashAlgorithm;
+            buffer[0].cbBuffer = hashName.Length * 2;                 // *2 since a WCHAR is 2-bytes
             buffer[0].pvBuffer = Marshal.StringToCoTaskMemUni(hashName);
 
-            buffer[1].BufferType = (int) ParameterTypes.KdfSalt;
+            buffer[1].BufferType = (int)ParameterTypes.KdfSalt;
             buffer[1].cbBuffer = salt.Length;
-            buffer[1].pvBuffer = Marshal.AllocCoTaskMem(salt.Length);                                   
+            buffer[1].pvBuffer = Marshal.AllocCoTaskMem(salt.Length);
             Marshal.Copy(salt, 0, buffer[1].pvBuffer, salt.Length);
 
-            buffer[2].BufferType = (int) ParameterTypes.KdfIterationCount;
+            buffer[2].BufferType = (int)ParameterTypes.KdfIterationCount;
             buffer[2].cbBuffer = sizeof(ulong);
-            buffer[2].pvBuffer = Marshal.AllocCoTaskMem(buffer[2].cbBuffer);                            
+            buffer[2].pvBuffer = Marshal.AllocCoTaskMem(buffer[2].cbBuffer);
             Marshal.Copy(BitConverter.GetBytes(iterations), 0, buffer[2].pvBuffer, buffer[2].cbBuffer);
 
             BCryptBufferDesc pParamList = new BCryptBufferDesc();
@@ -1145,13 +1145,13 @@ namespace LibUA.Security.Cryptography
 
             // Derive the key
             byte[] derivedKey = new byte[hashLength];
-            int pcbResult = 0;  
+            int pcbResult = 0;
             error = UnsafeNativeMethods.BCryptKeyDerivation(hKey, ref pParamList, derivedKey, derivedKey.Length, ref pcbResult, 0);
             if (error != ErrorCode.Success)
             {
                 throw new CryptographicException(Win32Native.GetNTStatusMessage((int)error));
             }
-            if(pcbResult != hashLength)
+            if (pcbResult != hashLength)
             {
                 throw new CryptographicException("Invalid result from BCryptKeyDerivation (PBKDF2).  Derived key is too short.");
             }

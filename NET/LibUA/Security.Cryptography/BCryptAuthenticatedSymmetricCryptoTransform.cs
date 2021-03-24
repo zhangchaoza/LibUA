@@ -1,13 +1,13 @@
-// Copyright (c) Microsoft Corporation.  All rights reserved.
+﻿// Copyright (c) Microsoft Corporation.  All rights reserved.
 
 using System;
 using System.Diagnostics;
 using System.IO;
+using System.Runtime.CompilerServices;
 using System.Runtime.ConstrainedExecution;
+using System.Runtime.InteropServices;
 using System.Security;
 using System.Security.Cryptography;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
 
 namespace LibUA.Security.Cryptography
 {
@@ -262,7 +262,7 @@ namespace LibUA.Security.Cryptography
             Marshal.Copy(m_authInfo.pbTag, tag, 0, m_authInfo.cbTag);
             return tag;
         }
-        
+
 
         /// <summary>
         ///     Transforms some blocks of input data, but don't finalize the transform

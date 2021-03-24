@@ -49,7 +49,7 @@ namespace LibUA.Security.Cryptography
     public sealed class RSACng : RSA, ICngAsymmetricAlgorithm
     {
         private static KeySizes[] s_legalKeySizes = new KeySizes[] { new KeySizes(384, 16384, 8) };
-        
+
         // CngKeyBlob formats for RSA key blobs
         private static CngKeyBlobFormat s_rsaFullPrivateBlob = new CngKeyBlobFormat(BCryptNative.KeyBlobType.RsaFullPrivateBlob);
         private static CngKeyBlobFormat s_rsaPrivateBlob = new CngKeyBlobFormat(BCryptNative.KeyBlobType.RsaPrivateBlob);
@@ -223,7 +223,7 @@ namespace LibUA.Security.Cryptography
         /// </summary>
         public override string KeyExchangeAlgorithm
         {
-            get { return "RSA-PKCS1-KeyEx";  }
+            get { return "RSA-PKCS1-KeyEx"; }
         }
 
         /// <summary>
@@ -404,7 +404,7 @@ namespace LibUA.Security.Cryptography
                 fixed (byte* pRsaBlob = rsaBlob)
                 {
                     BCryptNative.BCRYPT_RSAKEY_BLOB* pBcryptBlob = (BCryptNative.BCRYPT_RSAKEY_BLOB*)pRsaBlob;
-                    
+
                     int offset = Marshal.SizeOf(typeof(BCryptNative.BCRYPT_RSAKEY_BLOB));
 
                     // Read out the exponent
