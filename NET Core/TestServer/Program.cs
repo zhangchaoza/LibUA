@@ -5,6 +5,7 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using System.Threading.Tasks;
 using System.Timers;
 using LibUA;
 using LibUA.Core;
@@ -414,6 +415,8 @@ namespace TestServer
 
             public void PlayRow()
             {
+                return;
+
                 //Console.WriteLine("Play row {0}", rowCount);
 
                 foreach (var node in TrendNodes)
@@ -470,6 +473,16 @@ namespace TestServer
                         cryptPrivateKey = new RSACryptoServiceProvider();
                         cryptPrivateKey.ImportParameters(certPrivateParams);
                     }
+                }
+            }
+
+            protected override void OnMonitorAdded(NodeId id)
+            {
+                if (id.NamespaceIndex == 2 && AddressSpaceTable.TryGetValue(id, out var node))
+                {
+                    Console.WriteLine("OnMonitorAdded {0}", id);
+                    var dv = new DataValue((float)(rowCount + 0.1 * rnd.NextDouble()), StatusCode.Good, DateTime.Now);
+                    MonitorNotifyDataChange(node.Id, dv);
                 }
             }
         }

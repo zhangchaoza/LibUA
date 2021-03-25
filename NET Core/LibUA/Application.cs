@@ -120,6 +120,8 @@ namespace LibUA
                         mis.Add(mi);
                         monitorMap.Add(key, mis);
                     }
+
+                    Task.Run(() => OnMonitorAdded(mi.ItemToMonitor.NodeId));
                 }
                 finally
                 {
@@ -507,7 +509,7 @@ namespace LibUA
                     if (!AddressSpaceTable.TryGetValue(readValueIds[i].NodeId, out node) ||
                         !SessionHasPermissionToRead(session, readValueIds[i].NodeId))
                     {
-                        Console.WriteLine($"Read node {readValueIds[i].NodeId} unknown {readValueIds[i].AttributeId}");
+                        //Console.WriteLine($"Read node {readValueIds[i].NodeId} unknown {readValueIds[i].AttributeId}");
                         res[i] = new DataValue(null, StatusCode.BadNodeIdUnknown);
                         continue;
                     }
@@ -619,7 +621,7 @@ namespace LibUA
                         res[i] = new DataValue(null, StatusCode.Good);
                     }
 
-                    Console.WriteLine($"Read node {readValueIds[i].NodeId} {node.DisplayName.Text} {readValueIds[i].AttributeId} => {res[i].Value ?? "### NULL"}");
+                    //Console.WriteLine($"Read node {readValueIds[i].NodeId} {node.DisplayName.Text} {readValueIds[i].AttributeId} => {res[i].Value ?? "### NULL"}");
                 }
 
                 return res;
@@ -16924,6 +16926,10 @@ namespace LibUA
                 AddressSpaceTable.TryAdd(ID_i12182_DefaultBinary.Id, ID_i12182_DefaultBinary);
                 AddressSpaceTable.TryAdd(ID_i12183_ComplexNumberType.Id, ID_i12183_ComplexNumberType);
                 AddressSpaceTable.TryAdd(ID_i12186_DoubleComplexNumberType.Id, ID_i12186_DoubleComplexNumberType);
+            }
+
+            protected virtual void OnMonitorAdded(NodeId id)
+            {
             }
         }
     }
